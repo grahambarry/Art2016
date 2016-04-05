@@ -6,7 +6,7 @@ gem 'rails', '~> 4.2.3'
 gem 'bcrypt', '~> 3.1.10'
 gem "figaro"
 gem "puma"
-
+gem 'aws-sdk-v1'
 gem 'aws-sdk', '< 2.0'
 #gem 's3_direct_upload'
 #gem 'aws-sdk', '~> 2'
