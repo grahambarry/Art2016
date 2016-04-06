@@ -36,7 +36,7 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'rmagick', '~> 2.15.0'
 gem 'searchkick', '~> 1.0', '>= 1.0.3'
-gem 'the_lone_dyno'
+
 
 
 gem 'sdoc',          group: :doc
