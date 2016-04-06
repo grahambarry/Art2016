@@ -6,6 +6,8 @@
 /public/system/pins/images
 tmp/
 log/
+/tmp/
+/log/
 .log
 .tmp*
 .sublime-*
