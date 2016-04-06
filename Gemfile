@@ -4,7 +4,7 @@ ruby '2.1.5'
 gem 'Cussy', '~> 1.0.1'
 gem 'rails', '~> 4.2.3'
 gem 'bcrypt', '~> 3.1.10'
-gem "figaro"
+gem "figaro", '~> 1.0.0'
 gem "puma"
 gem 'aws-sdk-v1'
 gem 'aws-sdk', '< 2.0'
