@@ -4,6 +4,8 @@
 /config/application.yml
 /config/secrets.yml
 /public/system/pins/images
+tmp/
+log/
 .log
 .tmp*
 .sublime-*
