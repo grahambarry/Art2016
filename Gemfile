@@ -7,7 +7,7 @@ gem 'bcrypt', '~> 3.1.10'
 gem "figaro", '~> 1.0.0'
 gem "puma"
 gem 'aws-sdk-v1'
-gem 'aws-sdk', '< 2.0'
+
 #gem 's3_direct_upload'
 #gem 'aws-sdk', '~> 2'
 gem 's3_direct_upload'
@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'turbolinks'
 gem 'jbuilder'
-gem "paperclip", git: "https://github.com/thoughtbot/paperclip.git", branch: "master"
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 gem 'paperclip-meta', '~> 1.2.0'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'acts_as_votable', '~> 0.10.0'
