@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203230547) do
+ActiveRecord::Schema.define(version: 20160410164257) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(version: 20151203230547) do
 
   add_index "pins", ["use_id"], name: "index_pins_on_use_id"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "price",      precision: 12, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"

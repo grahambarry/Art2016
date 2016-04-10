@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :products
   root "pins#index"
   get 'cart/index'
 
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
   resources :reviews, except: [:show, :index, :edit]
 end
 
-
+  resources :products do
+    get "delete"
+  end
 
   resources :pins do
   	resources :pins

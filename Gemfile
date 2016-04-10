@@ -17,8 +17,8 @@ gem 'faker', '~> 1.4.3'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'autoprefixer-rails'
-gem 'sass-rails'
-gem 'bootstrap-sass'
+gem 'sass-rails', '~> 5.0.3'
+gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'node', '~> 0.0.2'
 gem 'haml'
 gem 'simple_form'
@@ -39,8 +39,12 @@ gem 'searchkick', '~> 1.0', '>= 1.0.3'
 
 
 
-gem 'sdoc',          group: :doc
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
 group :development, :test do
+
 gem 'sqlite3'
 end
 group :production do
