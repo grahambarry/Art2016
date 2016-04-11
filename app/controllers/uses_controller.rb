@@ -33,6 +33,9 @@ end
 
   def new
   	@use = Use.new
+    respond_to do |format|
+  format.js {render :layout=>false}
+end
   end
 
   def create
