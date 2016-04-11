@@ -38,7 +38,7 @@ end
     f.html
   end
 end
-  end
+
 
   def create
     @use = Use.new(use_params)
