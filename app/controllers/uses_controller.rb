@@ -33,12 +33,7 @@ end
 
   def new
   	@use = Use.new
-  respond_to do |f|
-    f.js { render layout: false, content_type: 'text/javascript' }
-    f.html
   end
-end
-
 
   def create
     @use = Use.new(use_params)
@@ -77,11 +72,6 @@ end
   end
 
   def login
-  respond_to do |f|
-    f.js { render layout: false, content_type: 'text/javascript' }
-    f.html
-  end
-
 end
 
 def admin_login
