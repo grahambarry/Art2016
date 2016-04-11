@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
 
   def new
+      respond_to do |f|
+    f.js { render layout: false, content_type: 'text/javascript' }
+    f.html
+  end
+end
   end
 def to_key
   new_record? ? nil : [ self.send(self.class.primary_key) ]

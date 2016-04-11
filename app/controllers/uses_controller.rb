@@ -33,8 +33,10 @@ end
 
   def new
   	@use = Use.new
-respond_to do |format|
-    format.js {render :content_type => 'text/javascript'}
+  respond_to do |f|
+    f.js { render layout: false, content_type: 'text/javascript' }
+    f.html
+  end
 end
   end
 
@@ -75,9 +77,11 @@ end
   end
 
   def login
-    respond_to do |format|
-    format.js {render :content_type => 'text/javascript'}
-end
+  respond_to do |f|
+    f.js { render layout: false, content_type: 'text/javascript' }
+    f.html
+  end
+
 end
 
 def admin_login

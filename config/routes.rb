@@ -49,9 +49,7 @@ end
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'signup'  => 'uses#new'
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+
 
   resources :uses
 
