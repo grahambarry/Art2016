@@ -1,0 +1,20 @@
+.vertcontainer
+	.vhelper
+		.vcontent
+		- provide(:title, "Forgot password")
+		%body
+			.col-md-4.col-md-offset-4
+				.panel.panel-default
+					.panel-heading
+						%h2 Forgot Your Password?
+						.close1
+							.close2
+								= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
+							.close3
+								= link_to "Cancel", "#", data: {dismiss: "modal"}
+					.panel-body
+						= form_for(:password_reset, url: password_resets_path) do |f|
+							= f.label :email
+							= f.email_field :email, class: 'form-control'
+							%br
+							= f.submit "Retrieve", class: "btn btn-primary"

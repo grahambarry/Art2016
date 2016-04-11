@@ -26,6 +26,7 @@ def clearCart
 	redirect_to :action => :index
 	end
 def index
+	@pins = Pin.all
 	# if there is a cart, pass it to the page for display
 	# else pass an empty value
 	if session[:cart] then

@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
 		before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-
+skip_before_action :verify_authenticity_token
   def search
     if params[:search].present?
       @pins = Pin.search(params[:search])

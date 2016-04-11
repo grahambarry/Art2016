@@ -1,0 +1,15 @@
+.vertcontainer
+	.vhelper
+		.vcontent
+			%body.bg8
+				.col-md-4.col-md-offset-4
+					.panel.panel-default
+						.panel-heading
+							%h2 Create New Art Feature
+							.close1
+								.close2
+									= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
+								.close3
+									= link_to "Cancel", "#", data: {dismiss: "modal"}
+						.panel-body
+							= render 'form'

@@ -1,2 +1,27 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.vertcontainer {
+  display: table;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;}
+.vhelper {
+  #position: absolute; /*a variation of an "lte ie7" hack*/
+  #top: 50%;
+  display: table-cell;
+  vertical-align: middle;}
+.vcontent {
+  #position: relative;
+  #top: -50%;
+  margin:0 auto;
+}
+.close1
+{position:relative; float:right; top:-36px; width:36px; height:48px; overflow:hidden;}
+.close4
+{position:relative; float:right; top:-24px; width:36px; height:48px; overflow:hidden;}
+.close2
+{position:relative; color:#fff; font-size:36px; width:48px; height:40px;}
+.close3
+{position:relative; color:#fff; top:-12px;font-size:10px; width:48px; height:12px; width:100%; text-align: center; left:-1px;}

@@ -1,0 +1,223 @@
+%body.boxed.bg8
+	#wrapper.light
+		%section.titlebar
+			.container
+				.sixteen.columns
+					
+				%nav
+					#breadcrumbs
+						%ul
+							%li
+								%a{:href => root_path} Home
+							%li
+								= link_to @pin.use.name, @pin.use
+							%li
+								= link_to @pin.title, @pin
+				.close4
+					.close2
+						= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
+					.close3
+						= link_to "Cancel", "#", data: {dismiss: "modal"}				
+.light2
+	.container
+		.eight.columns
+			.slider-padding
+			#product-slider.royalSlider.rsDefault
+				- @picture_frames = PictureFrame.all.where(aspect: @pin.aspect.to_s).each do |picture_frame|
+					.index_frame_container{"data-rsTmb" => picture_frame.image.url(:thumb), :class => "rsImg", :class => "style_image_frame" + @pin.aspect.to_s, id: 'frame-flipper' }
+						= image_tag @pin.image.url(:large), :class => "rsImg", :class => "style_image" + @pin.aspect.to_s, :style => "top: #{@picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.top}" + '%; ' "left: #{@picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.left}" + '%;' "width: #{101 - @picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.left * 2}" + '%;' "height: #{101 - @picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.top * 2}" + '%;', "data-rsTmb" => "/assets/product_item_thumb_02a.png"
+						= image_tag picture_frame.image.url(:large), :class => "rsImg", :class => "style_image_frame" + @pin.aspect.to_s, id: 'frame-flipper' 
+
+
+			.clearfix
+
+		.eight.columns
+			.product-page
+
+				%section.title
+					%h2= @pin.title
+					%span.product-price-discount
+						%i= number_to_currency(@pin.price, :unit => "€")
+						.reviews-counter
+							.row
+								.reviews.pull-right
+									<div class="star-rating" data-score= #{@avg_review} >
+								.row
+									%span="#{@reviews.length} reviews"
+
+				%section
+					#product-artist
+						Artist:
+						= @pin.use.name
+					%p.margin-reset
+						= @pin.description
+						%a{:href => "http://www.grazermedia.com"} Grazermedia
+						
+
+					.share-buttons
+						%ul
+							%li
+								%a{:href => "#"} Share
+							%li.share-facebook
+								%a{:href => "#"} Facebook
+							%li.share-twitter
+								%a{:href => "#"} Twitter
+							%li.share-gplus
+								%a{:href => "#"} Google Plus
+							%li.share-pinit
+								%a{:href => "#"} Pin It
+					.clearfix
+
+				%section.variables
+					.four.alpha.columns
+						%label{:for => "size"} Frame Size
+						%select#size{:name => "size"}
+							%option 49cm x 39cm
+							%option 59cm x 49cm
+							%option 91cm x 61cm
+					.four.omega.columns
+						%label{:for => "color"} Color
+						%select#color{:name => "color"}
+							%option Black
+							%option White
+							%option Brown
+					.clearfix
+					%section.linking
+						%form{:action => "#"}
+							.qtyminus
+							%input.qty{:name => "quantity", :type => "text", :value => "1"}/
+							.qtyplus
+
+						%a.button.adc{:href => "/cart/#{@pin.id}"} Add to Cart 
+						.btn-group.pull-right
+							= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-heart
+								= @pin.get_upvotes.size
+							- if current_use?(@pin.use)
+								= link_to "Edit", edit_pin_path, class: "btn btn-default"
+								= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+					.clearfix
+
+
+.row
+	.container.light
+		.sixteen.columns
+
+			%ul.tabs-nav
+				%li.active
+					%a{:href => "#tab1"} Item Description
+				%li
+					%a{:href => "#tab2"} Additional Information
+				%li
+					%a{:href => "#tab3"} Reviews
+					%span.tab-reviews= "#{@reviews.length} reviews"
+
+			.tabs-container
+				#tab1.tab-content
+					%p= @pin.description
+			#tab2.tab-content
+				%table.basic-table
+					%tr
+						%th Size
+						%td Small, Medium, Largem, Extra Large
+					%tr
+						%th Colors
+						%td Black, White, Brown
+					%tr
+						%th Material
+						%td Giclée Print, Lyson Inks, Marrutt Archival Papers, Wood, Glass 
+					%tr
+						%th Weight
+						%td N/A
+
+			#tab3.tab-content
+
+				%section.comments				
+					%ul
+						- @reviews.each do |review|
+							%li
+								
+								.avatar
+									%img=link_to gravatar_for(review.use, size: 70), review.use
+								.comment-content
+									.arrow-comment
+									.comment-by
+										%strong= review.use.name
+										%span.date= time_ago_in_words(review.created_at)
+									.d1	
+										.reviews.pull-right
+											<div class="star-rating" data-score= #{review.rating} >	
+									%p= review.comment
+								- if current_use?(review.use)
+									%p Edit
+
+						- if logged_in?
+							.comment-content
+								-if @reviews.blank?
+									%h4.pull-right Art Critic? What are your thoughts?
+
+								%section.user_info
+									= render 'shared/use_info'
+								%section.micropost_form
+									= render 'shared/review_form'							
+						- else
+
+							.comment-content
+								%h1 Join us now at ArtRising.ie
+								%h2
+								To add a review 
+								%a{:href => login_path} LOGIN
+								or
+								%a{:href => signup_path} SIGN UP
+								
+								%a.popup-with-zoom-anim.button.color.pull-right{:href => "#small-dialog"} Add Review
+
+				
+						%end
+
+
+						
+
+
+					
+
+					#small-dialog.zoom-anim-dialog.mfp-hide
+						%h3.headline Add Review
+						%span.line.margin-bottom-25
+						.clearfix
+
+
+						%form#add-comment.add-comment
+							- if logged_in?
+								.row
+
+									%section.user_info
+										= render 'shared/use_info'
+									%section.micropost_form
+										= render 'shared/micropost_form'
+							- else
+
+								.comment-content
+									%h1 Join us now at ArtRising.ie
+									%h2
+									To add a review 
+									%a{:href => login_path} LOGIN
+									or
+									%a{:href => signup_path} SIGN UP
+
+									%a.button.pull-right{:href => signup_path} Sign Up	
+									
+							%end
+
+							
+:javascript
+		$('.star-rating').raty({
+			path: '/assets/',
+			readOnly: true,
+			score: function() {
+				return $(this).attr('data-score');
+		}
+	});
+
+
+

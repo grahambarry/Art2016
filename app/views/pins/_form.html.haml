@@ -1,4 +1,4 @@
-= simple_form_for @pin, html: { multipart: true } do |f|
+= simple_form_for @pin, remote: true, html: { multipart: true } do |f|
 	- if @pin.errors.any?
 		#errors
 	
@@ -20,4 +20,6 @@
 		
 
 	= f.button :submit, class: "btn btn-primary"
+
+
 

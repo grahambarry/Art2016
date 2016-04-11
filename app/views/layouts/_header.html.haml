@@ -128,16 +128,16 @@
               %ul.dropdown-menu
                 %li= link_to "Profile", current_use
                 %li= link_to "Settings", current_use
-                %li= link_to "Add Art", new_pin_path
+                %li= link_to "Add Art", new_pin_path, remote: true
 
                 %li
                   = link_to "Log out", logout_path, method: "delete"
           - else
               
             %ul.nav.navbar-nav
-              %li= link_to "Log in", login_path
-              %li
-                %a{:href => signup_path} Sign Up
+              %li= link_to "Log in", login_path, remote: true
+              %li= link_to "Sign Up", signup_path, remote: true
+
                 
 
 

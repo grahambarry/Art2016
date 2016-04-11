@@ -11,14 +11,15 @@
 
 						%p
 
-							= link_to "|" + pin.use.name + "| ", pin
+							= link_to "|" + pin.use.name + "| ", pin, remote: true
 							%br
-							= link_to "VIEW", pin
+							= link_to "VIEW", edit_pin_path(pin), remote: true
 							
 
 .col-md-4.col-md-offset-4.center			
 	#infinite-scrolling
 	= will_paginate @pins
+
 
 
 
