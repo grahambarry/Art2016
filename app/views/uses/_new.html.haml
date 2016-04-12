@@ -28,5 +28,6 @@
                             = f.password_field :password_confirmation, class: 'form-control'
                         .checkout-section.active
                             = f.submit "Create my account", class: "btn btn-primary"
+                        %p Already have an Account?    #{link_to "Login", login_path, remote: true}
 
 
