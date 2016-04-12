@@ -91,7 +91,8 @@
 								= @pin.get_upvotes.size
 							- if current_use?(@pin.use)
 								= link_to "Edit", edit_pin_path, remote: true, class: "btn btn-default"
-								= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+								= link_to "Delete", pin_path, method: :delete, remote: true, class: "btn btn-default"
+					    		
 					.clearfix
 
 

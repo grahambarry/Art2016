@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-		before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+		before_action :find_pin, only: [:show, :edit, :delete, :update, :destroy, :upvote, :downvote]
 skip_before_action :verify_authenticity_token
   def search
     if params[:search].present?
@@ -63,16 +63,31 @@ end
     end
   end
 
+  def delete
+    @pin = Pin.find(params[:pin_id])
+  end
+
+  def destroy
+    @pins = Pin.all
+    @pin = Pin.find(params[:id])
+    @pin.destroy
+
+  end
+
+  	#def destroy
+	#	@pin.destroy
+	#	if @pin.destroy
+	#		redirect_to root_path, notice: "Done"
+	#	else
+	#		redirect_to root_path, notice: "Please Try Again"
+	#	end
+	#end
 
 
+	#def new
+	#	@pin = current_use.pins.build
 
-	def new
-		@pin = current_use.pins.build
-
-	end
-
-
-
+	#end
 
 	def create
 		@pin = current_use.pins.build(pin_params)
@@ -82,6 +97,21 @@ end
 			render 'new'
 		end
 	end
+
+  def new
+    @pin = current_use.pins.new
+  end
+
+  #def create
+    #@pin = current_use.pins.build(pin_params)
+  #end
+	#def create
+		#@pins = Pin.all
+		#@pin = current_use.pins.create(pin_params)
+
+
+	#end
+
 
 	
 
@@ -97,14 +127,7 @@ end
 		end
 	end
 
-	def destroy
-		@pin.destroy
-		if @pin.destroy
-			redirect_to root_path, notice: "Done"
-		else
-			redirect_to root_path, notice: "Please Try Again"
-		end
-	end
+
 
 	def upvote
 		if logged_in?

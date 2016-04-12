@@ -1,9 +1,9 @@
-$("ul.errors").html("")
+$("alert alert-info").html("")
 <% if @pin.errors.any? %>
   <% @pin.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+    $("alert alert-info").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $("#product-modal").html("<%= escape_javascript(render 'index') %>")
+  $("#flexcontainer").html("<%= escape_javascript(render 'index') %>")
   $("#product-modal").modal("hide")
 <% end %>

@@ -84,6 +84,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dropzonejs-rails (0.4.16)
+      rails (> 3.1)
     elasticsearch (1.0.15)
       elasticsearch-api (= 1.0.15)
       elasticsearch-transport (= 1.0.15)
@@ -248,6 +250,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 0.0.10)
   coffee-rails
   devise (~> 3.4.1)
+  dropzonejs-rails (~> 0.4.16)
   faker (~> 1.4.3)
   figaro (~> 1.0.0)
   foreman

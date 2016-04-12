@@ -1,0 +1,14 @@
+- @pins.each do |pin|
+	.grid-sizerx
+	.itemx		
+		.grid
+			%figure.effect-phoebe
+				= image_tag pin.image.url(:large)
+				%figcaption
+					%h2
+						= link_to pin.title, pin
+					%p
+						= link_to "|" + pin.use.name + "| ", pin, remote: true
+						%br
+						= link_to "VIEW", edit_pin_path(pin), remote: true
+						= link_to "Delete", pin_path(pin), method: :delete, remote: true
