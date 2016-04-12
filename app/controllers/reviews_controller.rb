@@ -27,16 +27,16 @@
     #@cussy = params[:comment]
 
 
-    respond_to do |format|
+  
       if @review.save
-        format.html { redirect_to @pin, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        redirect_to @pin, remote: true, notice: 'Your Review Has Been Added, Thank You.'
+        
       else
-        format.html { render :new }
+        render :new
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
-  end
+
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json

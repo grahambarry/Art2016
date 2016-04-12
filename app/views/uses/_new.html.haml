@@ -2,32 +2,31 @@
     .vhelper
         .vcontent
         - provide(:title, 'Sign up')
-        %body.bg8
-            .col-md-4.col-md-offset-4
-                .panel.panel-default
-                    .panel-heading
-                        %h2 Sign up
-                        .close1
-                            .close2
-                                = link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
-                            .close3
-                                = link_to "Cancel", "#", data: {dismiss: "modal"}
-                        .panel-body
-                            = form_for(@use) do |f|
-                                = render 'shared/error_messages', object: f.object
-                                .form-group
-                                = f.label :name
-                                = f.text_field :name, class: 'form-control'
-                                .form-group
-                                = f.label :email
-                                = f.email_field :email, class: 'form-control'
-                                .form-group
-                                = f.label :password 
-                                = f.password_field :password, class: 'form-control'
-                                .form-group
-                                = f.label :password_confirmation, "Confirmation"
-                                = f.password_field :password_confirmation, class: 'form-control'
-                                .checkout-section.active
-                                = f.submit "Create my account", class: "btn btn-primary"
+        .col-md-4.col-md-offset-4
+            .panel.panel-default
+                .panel-heading
+                    %h2 Sign up
+                    .close1
+                        .close2
+                            = link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
+                        .close3
+                            = link_to "Cancel", "#", data: {dismiss: "modal"}
+                .panel-body
+                    = form_for(@use) do |f|
+                        = render 'shared/error_messages', object: f.object
+                        .form-group
+                            = f.label :name
+                            = f.text_field :name, class: 'form-control'
+                        .form-group
+                            = f.label :email
+                            = f.email_field :email, class: 'form-control'
+                        .form-group
+                            = f.label :password 
+                            = f.password_field :password, class: 'form-control'
+                        .form-group
+                            = f.label :password_confirmation, "Confirmation"
+                            = f.password_field :password_confirmation, class: 'form-control'
+                        .checkout-section.active
+                            = f.submit "Create my account", class: "btn btn-primary"
 
 

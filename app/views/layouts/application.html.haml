@@ -6,17 +6,19 @@
 	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	= csrf_meta_tags
 
-%bod.bg8
+%body.bg8
 	= render :partial => "layouts/header"
 
 .mymargin
 	- flash.each do |name, msg|
 		= content_tag :div, msg, class: "alert alert-info"
 	= yield
-#product-modal.modal.fade
+	#product-modal.modal.fade
 
 
 //%script{:src => "http://code.jquery.com/jquery-1.11.0.min.js"}
+//%script{:src => "http://code.jquery.com/jquery-migrate-1.2.1.min.js"}
+
 %script{:src => "http://code.jquery.com/jquery-migrate-1.2.1.min.js"}
 %script{:src => "/assets/jquery.jpanelmenu.js"}
 
@@ -29,7 +31,6 @@
 %script{:src => "/assets/jquery.pureparallax.js"}
 %script{:src => "/assets/jquery.pricefilter.js"}
 %script{:src => "/assets/jquery.selectric.min.js"}
-%script{:src => "/assets/jquery.royalslider.min.js"}
 %script{:src => "/assets/SelectBox.js"}
 %script{:src => "/assets/modernizr.custom.js"}
 %script{:src => "/assets/waypoints.min.js"}
@@ -41,3 +42,5 @@
 %script{:src => "/assets/stacktable.js"}
 %script{:src => "/assets/custom.js"}
 %script{:src => "/assets/jquery.raty.js"}
+%script{:src => "/assets/jquery.royalslider.min.js"}
+

@@ -59,8 +59,26 @@ ul.top-bar-menu li i {
 	color: #c2c2c2;
 	margin: 0 5px 0 0;
 }
+.floater-right{
+	float:right;
+	padding-left:10px;
+margin-top:-25px;
+background:#fff;
+	width:50%;
+	position:relative;
+}
+.floater-left{
+	float:left;
+padding-right:10px;
+	width:50%;
+	position:relative;
+}
+.floater-left img{
+	
 
+	width:100%;
 
+}
 /* Logo
 ------------------------------------- */
 #logo { margin-top: 34px; }
@@ -70,7 +88,7 @@ ul.top-bar-menu li i {
 	height: 43px;
 }
 
-
+.joe90{width:80%;}
 /* Language / Currency
 ------------------------------------- */
 
@@ -3651,7 +3669,7 @@ a.caption-btn:hover {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1000;
+	z-index: 9990;
 	overflow: hidden;
 	position: fixed;
 	background: #000;
@@ -3664,7 +3682,7 @@ a.caption-btn:hover {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1001;
+	z-index: 9991;
 	position: fixed;
 	outline: none !important;
 	-webkit-backface-visibility: hidden;
@@ -3682,6 +3700,7 @@ a.caption-btn:hover {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	z-index: 9992;
 }
 
 .mfp-container:before {
@@ -3701,7 +3720,7 @@ a.caption-btn:hover {
 	vertical-align: middle;
 	margin: 0 auto;
 	text-align: left;
-	z-index: 505;
+	z-index: 9993;
 }
 
 .mfp-inline-holder .mfp-content,
@@ -3925,6 +3944,7 @@ button.mfp-arrow {
 	max-width: 800px;
 	margin: 40px auto;
 	position: relative;
+	z-index: 999;
 }
 
 #small-dialog h3 {
@@ -7433,7 +7453,8 @@ only screen and (min-device-pixel-ratio: 2) {
 	.bg14 { background-image: url("/assets/tileable_wood_texture.png"); }
 	.bg15 { background-image: url("/assets/stardust.png"); }
 	.bg16 { background-image: url("/assets/vichy.png"); }
-
+	.bg8new { background-image: url("/assets/shattered.png");
+	width:100%; }
 	.colors li a.active { box-shadow: 0 0 0 2px #fff inset }
 
 	#reset {margin: 0 0 10px 2px;}

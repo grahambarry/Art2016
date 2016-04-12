@@ -11,7 +11,7 @@
 							.close3
 								= link_to "Cancel", "#", data: {dismiss: "modal"}
 					.panel-body
-						.current_image
-							%strong.center Current Image
+						.floater-left
 							= image_tag @pin.image.url(:medium)
-						= render 'form'
+						.floater-right
+							= render 'form'

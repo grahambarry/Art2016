@@ -18,19 +18,15 @@
 						= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
 					.close3
 						= link_to "Cancel", "#", data: {dismiss: "modal"}				
-.light2
+.light2mine
 	.container
 		.eight.columns
-			.slider-padding
 			#product-slider.royalSlider.rsDefault
 				- @picture_frames = PictureFrame.all.where(aspect: @pin.aspect.to_s).each do |picture_frame|
 					.index_frame_container{"data-rsTmb" => picture_frame.image.url(:thumb), :class => "rsImg", :class => "style_image_frame" + @pin.aspect.to_s, id: 'frame-flipper' }
 						= image_tag @pin.image.url(:large), :class => "rsImg", :class => "style_image" + @pin.aspect.to_s, :style => "top: #{@picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.top}" + '%; ' "left: #{@picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.left}" + '%;' "width: #{101 - @picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.left * 2}" + '%;' "height: #{101 - @picture_frames = PictureFrame.where(aspect: @pin.aspect.to_s).limit(1).take!.top * 2}" + '%;', "data-rsTmb" => "/assets/product_item_thumb_02a.png"
-						= image_tag picture_frame.image.url(:large), :class => "rsImg", :class => "style_image_frame" + @pin.aspect.to_s, id: 'frame-flipper' 
-
-
+						= image_tag picture_frame.image.url(:large), :class => "rsImg", :class => "style_image_frame" + @pin.aspect.to_s, id: 'frame-flipper'
 			.clearfix
-
 		.eight.columns
 			.product-page
 
@@ -94,7 +90,7 @@
 								%span.glyphicon.glyphicon-heart
 								= @pin.get_upvotes.size
 							- if current_use?(@pin.use)
-								= link_to "Edit", edit_pin_path, class: "btn btn-default"
+								= link_to "Edit", edit_pin_path, remote: true, class: "btn btn-default"
 								= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
 					.clearfix
 
@@ -166,9 +162,9 @@
 								%h1 Join us now at ArtRising.ie
 								%h2
 								To add a review 
-								%a{:href => login_path} LOGIN
+								%a= link_to "LOGIN", login_path, remote: true, :onclick => '$.magnificPopup.close();'
 								or
-								%a{:href => signup_path} SIGN UP
+								%a= link_to "SIGN UP", signup_path, remote: true, :onclick => '$.magnificPopup.close();'
 								
 								%a.popup-with-zoom-anim.button.color.pull-right{:href => "#small-dialog"} Add Review
 
@@ -201,12 +197,12 @@
 									%h1 Join us now at ArtRising.ie
 									%h2
 									To add a review 
-									%a{:href => login_path} LOGIN
+									%a= link_to "LOGIN", login_path, remote: true, :onclick => '$.magnificPopup.close();'
 									or
-									%a{:href => signup_path} SIGN UP
+									%a= link_to "SIGN UP", signup_path, remote: true, :onclick => '$.magnificPopup.close();'
 
-									%a.button.pull-right{:href => signup_path} Sign Up	
-									
+									%a.button.pull-right{:href => signup_path, :onclick => '$.magnificPopup.close();'} Sign Up	
+		
 							%end
 
 							
@@ -218,6 +214,197 @@
 				return $(this).attr('data-score');
 		}
 	});
+:javascript	
+		$('.royalSlider').royalSlider({
 
+			autoScaleSlider: true,
+			autoScaleSliderWidth: 560,
+			autoHeight: true,
+
+			loop: false,
+			slidesSpacing: 0,
+
+			imageScaleMode: 'none',
+			imageAlignCenter:false,
+
+			navigateByClick: false,
+			numImagesToPreload:2,
+			updateSliderSize: true,
+			/* Arrow Navigation */
+			arrowsNav:true,
+			arrowsNavAutoHide: false,
+			arrowsNavHideOnTouch: true,
+			keyboardNavEnabled: true,
+			fadeinLoadedSlide: true,
+
+			/* Thumbnail Navigation */
+			controlNavigation: 'thumbnails',
+			thumbs: {
+				orientation: 'horizontal',
+				firstMargin: false,
+				appendSpan: true,
+				autoCenter: true,
+				spacing: 10,
+				paddingTop: 10,
+			}
+
+		});
+
+:javascript	
+	jQuery(document).ready(function($) {
+	  setTimeout(function() {
+	     $('.royalSlider').royalSlider('updateSliderSize', true);
+
+	  }, 200);
+	});
+
+:javascript	
+		$(document).ready(function(){
+			$('body').magnificPopup({
+				type: 'image',
+				delegate: 'a.mfp-gallery',
+
+				fixedContentPos: true,
+				fixedBgPos: true,
+
+				overflowY: 'auto',
+
+				closeBtnInside: true,
+				preloader: true,
+
+				removalDelay: 0,
+				mainClass: 'mfp-fade',
+
+				gallery:{enabled:true},
+
+				callbacks: {
+					buildControls: function() {
+						console.log('inside'); this.contentContainer.append(this.arrowLeft.add(this.arrowRight));
+					}
+
+				}
+			});
+
+
+			$('.popup-with-zoom-anim').magnificPopup({
+				type: 'inline',
+
+				fixedContentPos: false,
+				fixedBgPos: true,
+
+				overflowY: 'auto',
+
+				closeBtnInside: true,
+				preloader: false,
+
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'my-mfp-zoom-in'
+			});
+
+
+			$('.mfp-image').magnificPopup({
+				type: 'image',
+				closeOnContentClick: true,
+				mainClass: 'mfp-fade',
+				image: {
+					verticalFit: true
+				}
+			});
+
+
+			$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+				disableOn: 700,
+				type: 'iframe',
+				mainClass: 'mfp-fade',
+				removalDelay: 160,
+				preloader: false,
+
+				fixedContentPos: false
+			});
+		});
+:javascript			
+	var $Filter = $('.share-buttons');
+			var FilterTimeOut;
+			$Filter.find('ul li:first').addClass('active');
+			$Filter.find('ul li:not(.active)').hide();
+			$Filter.hover(function(){
+				clearTimeout(FilterTimeOut);
+				if( $(window).width() < 959 )
+				{
+					return;
+				}
+				FilterTimeOut=setTimeout(function(){
+					$Filter.find('ul li:not(.active)').stop(true, true).animate({width: 'show' }, 250, 'swing');
+					$Filter.find('ul li:first-child a').addClass('share-hovered');
+				}, 100);
+
+			},function(){
+				if( $(window).width() < 960 )
+				{
+					return;
+				}
+				clearTimeout(FilterTimeOut);
+				FilterTimeOut=setTimeout(function(){
+					$Filter.find('ul li:not(.active)').stop(true, true).animate({width: 'hide'}, 250, 'swing');
+					$Filter.find('ul li:first-child a').removeClass('share-hovered');
+
+				}, 250);
+			});
+			$(window).resize(function() {
+				if( $(window).width() < 960 )
+				{
+					$Filter.find('ul li:not(.active)').show();
+				}
+				else
+				{
+					$Filter.find('ul li:not(.active)').hide();
+				}
+			});
+			$(window).resize();
+:javascript	
+	var thisrowfield;
+		$('.qtyplus').click(function(e){
+			e.preventDefault();
+			thisrowfield = $(this).parent().parent().parent().find('.qty');
+
+			var currentVal = parseInt(thisrowfield.val());
+			if (!isNaN(currentVal)) {
+				thisrowfield.val(currentVal + 1);
+			} else {
+				thisrowfield.val(0);
+			}
+		});
+
+		$(".qtyminus").click(function(e) {
+			e.preventDefault();
+			thisrowfield = $(this).parent().parent().parent().find('.qty');
+			var currentVal = parseInt(thisrowfield.val());
+			if (!isNaN(currentVal) && currentVal > 0) {
+				thisrowfield.val(currentVal - 1);
+			} else {
+				thisrowfield.val(0);
+			}
+		});
+
+:javascript	
+		$('.orderby').selectric();
+
+
+		var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? true : false;
+
+		$(".variables select").each(function() {
+			if(!isMobile) {
+				var sb = new SelectBox({
+					selectbox: $(this)
+				});
+				void(sb);
+
+			}
+		});
+
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			$(".variables select").css({'display':'block'});
+		}
 
 
