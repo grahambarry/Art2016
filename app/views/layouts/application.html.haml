@@ -9,11 +9,11 @@
 %body.bg8
 	= render :partial => "layouts/header"
 
-.mymargin
+.newer.mymargin
 	- flash.each do |name, msg|
 		= content_tag :div, msg, class: "alert alert-info"
-	= yield
-	#product-modal.modal.fade
+= yield
+#product-modal.modal.fade
 
 
 //%script{:src => "http://code.jquery.com/jquery-1.11.0.min.js"}
