@@ -11,20 +11,14 @@ $ ->
       columnWidth: ".grid-sizerx"
 
 
-       
-$ ->
-  $('#pictureframes').imagesLoaded ->
-    $('#pictureframes').masonry
-      itemSelector: '.box'
-      isFitWidth: true
-      percentPosition: true
+
 
 $ ->
   if $('#infinite-scrolling').size() > 0
     $(window).on 'scroll', ->
       more_pins_url = $('.pagination a[rel=next]').attr('href')
       if more_pins_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
-          $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
+          $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." /><p>Loading</p>')
           $.getScript more_pins_url
           $.ajax
             url: more_pins_url
@@ -32,14 +26,19 @@ $ ->
               $("#flexcontainer").append(data)
       if !more_pins_url
         $('.pagination').html("")
-     return
+      return
     return
 $ ->
   $('.tn img').on 'click'
   $('#mainpic#frame-flipper img').attr 'src', $(this).attr('src')
 
-
-
+       
+$ ->
+  $('#pictureframes').imagesLoaded ->
+    $('#pictureframes').masonry
+      itemSelector: '.box'
+      isFitWidth: true
+      percentPosition: true
 
 
 

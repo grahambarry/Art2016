@@ -1,0 +1,18 @@
+.div
+	= simple_form_for @pin, remote: true, html: { multipart: true } do |f|
+		- if @pin.errors.any?
+			#errors	
+				%ul
+					- @pin.errors.full_messages.each do |msg|
+						%li= msg
+		.form-group
+			= f.input :title, input_html: { class: 'form-control' }
+
+		.form-group
+			= f.input :description, input_html: { class: 'form-control' }
+
+		.form-group
+			= f.input :price, input_html: { class: 'form-control' }
+				
+
+		= f.button :submit, 'Create', class: "btn btn-primary"

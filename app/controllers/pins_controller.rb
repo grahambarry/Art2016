@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-		before_action :find_pin, only: [:show, :edit, :delete, :update, :destroy, :upvote, :downvote]
+		before_action :find_pin, only: [:show, :edit, :delete, :update, :upvote, :downvote]
 skip_before_action :verify_authenticity_token
   def search
     if params[:search].present?
@@ -11,7 +11,7 @@ skip_before_action :verify_authenticity_token
 
   
   def index
-    @pins = Pin.paginate(page: params[:page], per_page: 9).order("created_at DESC")
+    @pins = Pin.paginate(page: params[:page], per_page: 12).order("created_at DESC")
 	    respond_to do |format|
 	    format.html
 	    format.js # add this line for your js template
@@ -24,6 +24,13 @@ skip_before_action :verify_authenticity_token
     @microposts = current_use.microposts.build if logged_in?
   end
 end
+		@pins = Pin.all
+   
+    @pin = Pin.new
+
+    	@microposts = current_use.microposts.build if logged_in?
+
+
 end
 
 
@@ -63,44 +70,50 @@ end
     end
   end
 
+	def dropzy
+		@pins = Pin.all
+		@pin = Pin.new
+	end
+
   def delete
-    @pin = Pin.find(params[:pin_id])
+   
   end
 
-  def destroy
-    @pins = Pin.all
-    @pin = Pin.find(params[:id])
-    @pin.destroy
+  #def destroy
+    #@pins = Pin.all
+    #@pin = Pin.find(params[:id])
+    #@pin.destroy
 
-  end
+  #end
 
-  	#def destroy
-	#	@pin.destroy
-	#	if @pin.destroy
-	#		redirect_to root_path, notice: "Done"
-	#	else
-	#		redirect_to root_path, notice: "Please Try Again"
-	#	end
-	#end
+  	def destroy
+  		@pin = Pin.find(params[:id])
+		@pin.destroy
+		if @pin.destroy
+			redirect_to root_path, notice: "Done"
+		else
+			redirect_to root_path, notice: "Please Try Again"
+		end
+	end
 
 
 	#def new
 	#	@pin = current_use.pins.build
 
 	#end
-
-	def create
-		@pin = current_use.pins.build(pin_params)
-		if @pin.save
-			redirect_to @pin, notice: "Art successfully created"
-		else
-			render 'new'
-		end
-	end
-
   def new
     @pin = current_use.pins.new
   end
+	#def create
+		#@pin = current_use.pins.build(pin_params)
+		#if @pin.save
+			#redirect_to @pin, notice: "Art successfully created"
+		#else
+			#render 'new'
+		#end
+	#end
+
+
 
   #def create
     #@pin = current_use.pins.build(pin_params)
@@ -111,6 +124,16 @@ end
 
 
 	#end
+
+	  def create
+    @pin = current_use.pins.new(pin_params)
+
+    if @pin.save
+      render json: { message: "success", fileID: @pin.id }, :status => 200
+    else
+      render json: { error: @pin.errors.full_messages.join(',')}, :status => 400
+    end     
+  end
 
 
 	

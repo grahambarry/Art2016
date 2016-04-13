@@ -8,5 +8,5 @@
       = succeed "?" do
         %b= @pin.title
     .modal-footer
-      = link_to "Yes, Delete This Art", pin_path(@pin), method: :delete, remote: true, class: "btn btn-danger"
+      = link_to "Yes, Delete This Art", pin_path(pin), method: :delete, remote: true, class: "btn btn-danger"
       = link_to "No, Please Don't", "#", class: "btn btn-default", data: { dismiss: "modal" }

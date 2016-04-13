@@ -1,9 +1,0 @@
-I"½(function() {
-  $(document).on("page:change", function() {
-    return $('#comments-link').click(function() {
-      return $('#comments-section').fadeToggle();
-    });
-  });
-
-}).call(this);
-:ET

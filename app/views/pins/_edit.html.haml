@@ -4,14 +4,12 @@
 			#edit_page.col-md-8.col-md-offset-2
 				.panel.panel-default
 					.panel-heading
-						%h2 Edit Art Feature
+						%h2 Add Details
 						.close1
 							.close2
 								= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
-							.close3
-								= link_to "Cancel", "#", data: {dismiss: "modal"}
 					.panel-body
 						.floater-left
-							= image_tag @pin.image.url(:medium)
+							= image_tag @pin.image.url(:large)
 						.floater-right
-							= render 'form'
+							= render 'form2'

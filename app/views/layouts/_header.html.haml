@@ -131,7 +131,8 @@
                 %li= link_to "Add Art", new_pin_path, remote: true
 
                 %li
-                  = link_to "Log out", logout_path, method: "delete"
+                  = link_to "Log out", logout_path, remote: true
+
           - else
               
             %ul.nav.navbar-nav

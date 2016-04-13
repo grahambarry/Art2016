@@ -15,7 +15,7 @@
 								= link_to @pin.title, @pin
 				.close4
 					.close2
-						= link_to "", "#", class: "glyphicon glyphicon-remove", data: {dismiss: "modal"}
+						= link_to "Root", root_path, class: "glyphicon glyphicon-remove", remote: true
 					.close3
 						= link_to "Cancel", "#", data: {dismiss: "modal"}				
 .light2mine
@@ -85,14 +85,15 @@
 							.qtyplus
 
 						%a.button.adc{:href => "/cart/#{@pin.id}"} Add to Cart 
-						.btn-group.pull-right
-							= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do
-								%span.glyphicon.glyphicon-heart
-								= @pin.get_upvotes.size
+						.btn-group-new
 							- if current_use?(@pin.use)
-								= link_to "Edit", edit_pin_path, remote: true, class: "btn btn-default"
-								= link_to "Delete", pin_path, method: :delete, remote: true, class: "btn btn-default"
-					    		
+								= link_to "", edit_pin_path(@pin), remote: true, class: "glyphicon glyphicon-pencil"
+								= link_to "", pin_path(@pin), method: :delete, remote: true, class: "glyphicon glyphicon-trash"	
+							= link_to like_pin_path(@pin), remote: true, method: :put, class: "glyphicon.glyphicon-heart" do
+								.glyphicon.glyphicon-heart
+								= @pin.get_upvotes.size
+
+
 					.clearfix
 
 

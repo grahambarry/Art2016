@@ -1,0 +1,7 @@
+.dropzy
+	= form_for(Pin.new, html: { multipart: true, class: "dropzone"}) do |d|
+		.fallback
+		= d.submit "Upload my Art"
+
+- @pins.each do |pin|
+	.img-thumbnail= image_tag pin.image.url(:thumb)

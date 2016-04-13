@@ -4,6 +4,6 @@ $("alert alert-info").html("")
     $("alert alert-info").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $("#flexcontainer").html("<%= escape_javascript(render 'index') %>")
+  $(".product-div").html("<%= escape_javascript(render 'index') %>")
   $("#product-modal").modal("hide")
 <% end %>

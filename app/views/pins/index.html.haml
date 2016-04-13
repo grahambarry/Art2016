@@ -1,9 +1,9 @@
-= link_to "New Product", new_pin_path, remote: true, class: "btn btn-primary"
-#flexcontainer
-	= render "index"
+.product-div
+	= render 'index'
 .col-md-4.col-md-offset-4.center			
 	#infinite-scrolling
-	= will_paginate @pins
+	= will_paginate @pins	
+
 
 
 

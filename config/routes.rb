@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :pins do
     get "delete"
   end
+  resources :pins, only: [:index, :create,]
   resources :products do
     get "delete"
   end
@@ -52,11 +53,12 @@ end
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  get 'signup'  => 'uses#new'
+  get 'logout'  => 'sessions#destroy'
+  get    'signup'  => 'uses#new'
+
 
 
   resources :uses
-
   resources :pins
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
