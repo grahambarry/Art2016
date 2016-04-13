@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :pins do
     get "delete"
+    get "destroy"
+    get "edit"
   end
   resources :pins, only: [:index, :create,]
   resources :products do
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
 resources :cart do
   collection do
   end
-  resources :pins, except: [:edit]
+  resources :pins, except: [:edit, :delete, :destroy]
   end
  resources :pins do
   collection do

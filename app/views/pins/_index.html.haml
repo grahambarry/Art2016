@@ -16,4 +16,4 @@
 							- if current_use?(pin.use)
 								.btn-group-new
 									= link_to "", edit_pin_path(pin), remote: true, class: "glyphicon glyphicon-pencil"
-									= link_to "", pin_delete_path(pin), remote: true, class: "glyphicon glyphicon-trash"
+									= link_to "", pin_path(id: pin.id), remote: true, method: :delete, class: "glyphicon glyphicon-trash"

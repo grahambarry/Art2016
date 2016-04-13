@@ -76,7 +76,9 @@ end
 	end
 
   def delete
-   
+
+    @pin = Pin.find(params[:pin_id])
+
   end
 
   #def destroy
@@ -90,7 +92,7 @@ end
   		@pin = Pin.find(params[:id])
 		@pin.destroy
 		if @pin.destroy
-			redirect_to root_path, notice: "Done"
+			redirect_to root_path, notice: "Done1"
 		else
 			redirect_to root_path, notice: "Please Try Again"
 		end
