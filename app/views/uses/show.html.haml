@@ -2,28 +2,8 @@
 %body.bg8
   .row
     %aside.col-md-4
-      %section.use_info
-        %h1
-          = gravatar_for @use
-          = @use.name
-
-  = link_to "Comments", "#", id: "comments-link"
-
-  #comments-section 
-    .col-md-8
-      - if @use.microposts.any?
-        %h3
-          Microposts (#{@use.microposts.count})
-        %ol.microposts
-          = render @microposts
-          = will_paginate @microposts
-
-
-  .row
-    %aside.col-md-4
       %section.user_info
-        = render 'shared/use_info'
-
+  = render 'shared/seemyart'        
 
 
 

@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'dotenv-rails', groups: [:development, :test]
+
 ruby '2.1.5'
 
 gem 'Cussy', '~> 1.0.1'
@@ -32,7 +34,7 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 gem 'dropzonejs-rails', '~> 0.4.16'
 gem 'mini_exiftool'
 gem 'mini_exiftool_vendored'
-
+gem 'geocoder'
 gem 'paperclip-meta', '~> 1.2.0'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -48,6 +50,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 group :development, :test do
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
 gem 'sqlite3'
 end

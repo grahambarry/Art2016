@@ -26,6 +26,7 @@ end
 
   def show
     @use = Use.find(params[:id])
+
      @microposts = current_use.microposts.build if logged_in?
     @microposts = @use.microposts.paginate(page: params[:page])
     

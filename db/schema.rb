@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412214757) do
+ActiveRecord::Schema.define(version: 20160413204616) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160412214757) do
     t.integer  "aspect"
     t.text     "image_meta"
     t.decimal  "price"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "pins", ["use_id"], name: "index_pins_on_use_id"

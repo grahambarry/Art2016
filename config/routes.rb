@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  resources :pins do
-    get "delete"
-    get "destroy"
-    get "edit"
-  end
+
   resources :pins, only: [:index, :create,]
   resources :products do
     get "delete"

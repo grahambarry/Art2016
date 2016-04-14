@@ -1,0 +1,29 @@
+= link_to gravatar_for(current_use, size: 50), current_use
+%h1= current_use.name
+= current_use.name 
+%span= pluralize(current_use.pins.count, "Pieces")
+#flexcontainer
+	- @current_use.pins.each do |pin|
+		.grid-sizerx
+		.itemx		
+			.grid
+				%figure.effect-phoebe
+					= image_tag pin.image.url(:large)
+					%figcaption
+						- if pin.title != "- EDIT NAME -"
+							%h2
+								= link_to pin.title, pin_path(pin), remote: true
+						%end
+						- if pin.title == "- EDIT NAME -" && current_use?(pin.use)
+							%h2
+								= link_to pin.title, edit_pin_path(pin), remote: true
+						%end
+							%p
+								= link_to "|" + pin.use.name + "| ", pin, remote: true
+								%br
+								= link_to "VIEW", pin_path(pin), remote: true
+					
+								- if current_use?(pin.use)
+									.btn-group-new
+										= link_to "", edit_pin_path(pin), remote: true, class: "glyphicon glyphicon-pencil"
+										= link_to "", pin_path(id: pin.id), remote: true, method: :delete, class: "glyphicon glyphicon-trash"

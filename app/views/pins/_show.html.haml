@@ -104,51 +104,67 @@
 			%ul.tabs-nav
 				%li.active
 					%a{:href => "#tab1"} Item Description
-				%li
-					%a{:href => "#tab2"} Additional Information
+				- if current_use?(@pin.use) && @pin.latitude == nil && @pin.longitude  == nil
+					%li
+						%a{:href => "#tab2"} Add Location
+				%end
+				- if @pin.latitude != nil && @pin.longitude != nil 
+					%li
+						%a{:href => "#tab2"} Location
+				%end
 				%li
 					%a{:href => "#tab3"} Reviews
 					%span.tab-reviews= "#{@reviews.length} reviews"
 
-			.tabs-container
+			.tabs-container	
 				#tab1.tab-content
-					%p= @pin.description
-			#tab2.tab-content
-				%table.basic-table
-					%tr
-						%th Size
-						%td Small, Medium, Largem, Extra Large
-					%tr
-						%th Colors
-						%td Black, White, Brown
-					%tr
-						%th Material
-						%td Giclée Print, Lyson Inks, Marrutt Archival Papers, Wood, Glass 
-					%tr
-						%th Weight
-						%td N/A
+					%table.basic-table
+						%tr
+							%th Artist
+							%td 
+								#product-artist
+									= link_to @pin.use.name, @pin.use
+						%tr
+							%th Title
+							%td 
+								#product-artist
+									= @pin.title
+						%tr
+							%th Description
+							%td 
+								#product-artist
+									= @pin.description
+						%tr
+							%th Material
+							%td Giclée Print, Lyson Inks, Marrutt Archival Papers, Wood, Glass		
+				#tab2.tab-content
+					- if @pin.latitude != nil && @pin.longitude != nil
+						.purple-outline
+							%iframe{:frameborder => "1", :height => "450", :src => "https://www.google.com/maps/embed/v1/place?key=#{ENV['GOOGLE_MAPS_API_KEY']} &q=#{"#{@pin.latitude},#{@pin.longitude}"}", :style => "border:1", :width => "100%"}}
+							%br/
 
-			#tab3.tab-content
+				#tab3.tab-content
+					%section.comments				
+						%ul
+							- @reviews.each do |review|
+								%li
+									
+									.avatar
+										%img=link_to gravatar_for(review.use, size: 70), review.use
+									.comment-content
+										.arrow-comment
+										.comment-by
+											%strong= review.use.name
+											%span.date= time_ago_in_words(review.created_at)
+										.d1	
+											.reviews.pull-right
+												<div class="star-rating" data-score= #{review.rating} >	
+										%p= review.comment
+									- if current_use?(review.use)
+										%p Edit
 
 				%section.comments				
 					%ul
-						- @reviews.each do |review|
-							%li
-								
-								.avatar
-									%img=link_to gravatar_for(review.use, size: 70), review.use
-								.comment-content
-									.arrow-comment
-									.comment-by
-										%strong= review.use.name
-										%span.date= time_ago_in_words(review.created_at)
-									.d1	
-										.reviews.pull-right
-											<div class="star-rating" data-score= #{review.rating} >	
-									%p= review.comment
-								- if current_use?(review.use)
-									%p Edit
-
 						- if logged_in?
 							.comment-content
 								-if @reviews.blank?
@@ -203,7 +219,7 @@
 									or
 									%a= link_to "SIGN UP", signup_path, remote: true, :onclick => '$.magnificPopup.close();'
 
-									%a.button.pull-right{:href => signup_path, :onclick => '$.magnificPopup.close();'} Sign Up	
+									%a.button.pull-right{:href => signup_path, :onclick => '$.magnificPopup.close();'} Sign Up
 		
 							%end
 
@@ -408,5 +424,27 @@
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			$(".variables select").css({'display':'block'});
 		}
+:javascript
+	var $tabsNav    = $('.tabs-nav'),
+	$tabsNavLis = $tabsNav.children('li');
+	// $tabContent = $('.tab-content');
+
+	$tabsNav.each(function() {
+		var $this = $(this);
+		$this.next().children('.tab-content').stop(true,true).hide()
+		.first().show();
+
+		$this.children('li').first().addClass('active').stop(true,true).show();
+	});
+
+	$tabsNavLis.on('click', function(e) {
+		var $this = $(this);
+		$this.siblings().removeClass('active').end()
+		.addClass('active');
+		$this.parent().next().children('.tab-content').stop(true,true).hide()
+		.siblings( $this.find('a').attr('href') ).fadeIn();
+
+		e.preventDefault();
+	});
 
 
